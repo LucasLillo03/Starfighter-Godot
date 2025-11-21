@@ -1,0 +1,224 @@
+[gd_scene load_steps=33 format=3 uid="uid://c07vjnnedm1ax"]
+
+[ext_resource type="Script" uid="uid://byoyd76j2qqd8" path="res://Scripts/Model/Starfighter.gd" id="1_fnemy"]
+[ext_resource type="Texture2D" uid="uid://de1svolmw2nr2" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_x7gyf"]
+[ext_resource type="Texture2D" uid="uid://dpf2oykeq7cnc" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_j45kr"]
+[ext_resource type="Texture2D" uid="uid://ci3tioggnermc" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="4_1ogiv"]
+[ext_resource type="Texture2D" uid="uid://2unholwhrow0" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="5_0hhuq"]
+[ext_resource type="Texture2D" uid="uid://ccb4mscscuq6k" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="6_yqj6r"]
+[ext_resource type="Texture2D" uid="uid://bkp1wl4wtdukx" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Shields/PNGs/Main Ship - Shields - Front and Side Shield.png" id="7_l6rwy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36527"]
+size = Vector2(26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cwfr"]
+atlas = ExtResource("4_1ogiv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vvlb"]
+atlas = ExtResource("4_1ogiv")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddwnm"]
+atlas = ExtResource("4_1ogiv")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1gyp"]
+atlas = ExtResource("5_0hhuq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7ftu"]
+atlas = ExtResource("5_0hhuq")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3feo"]
+atlas = ExtResource("5_0hhuq")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prrlq"]
+atlas = ExtResource("5_0hhuq")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_to28c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cwfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vvlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddwnm")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1gyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7ftu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3feo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prrlq")
+}],
+"loop": true,
+"name": &"Powering",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpvoy"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mgii"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h66k"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nljb0"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg8of"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un3gc"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3t7g"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixnni"]
+atlas = ExtResource("6_yqj6r")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqr5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpvoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mgii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h66k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nljb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg8of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un3gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3t7g")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixnni")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5gi2"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueck7"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqclq"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whyax"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxh05"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mvnh"]
+atlas = ExtResource("7_l6rwy")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kg6u0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5gi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueck7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqclq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whyax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxh05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mvnh")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 8.0
+}]
+
+[node name="Starfighter" type="CharacterBody2D"]
+script = ExtResource("1_fnemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_36527")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_x7gyf")
+
+[node name="Engine" type="Sprite2D" parent="."]
+texture = ExtResource("3_j45kr")
+
+[node name="EngineEffect" type="AnimatedSprite2D" parent="Engine"]
+sprite_frames = SubResource("SpriteFrames_to28c")
+animation = &"Idle"
+frame_progress = 0.898527
+
+[node name="Weapon" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_pqr5b")
+animation = &"Fire"
+frame_progress = 0.699859
+
+[node name="Armour" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_kg6u0")
+animation = &"Default"
+frame_progress = 0.259029
