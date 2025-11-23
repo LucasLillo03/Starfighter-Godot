@@ -201,16 +201,17 @@ texture = ExtResource("3_fnemy")
 
 [node name="EngineEffect" type="AnimatedSprite2D" parent="EngineSprite"]
 sprite_frames = SubResource("SpriteFrames_to28c")
-animation = &"poweringBase"
+animation = &"idleBase"
+frame_progress = 0.967745
 
 [node name="WeaponSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_pqr5b")
 animation = &"idleAutoCannon"
-frame_progress = 0.832595
+frame_progress = 0.512125
 
 [node name="ArmourSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_kg6u0")
 animation = &"Default"
-frame_progress = 0.479675
+frame_progress = 0.767823

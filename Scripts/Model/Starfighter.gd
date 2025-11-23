@@ -30,8 +30,21 @@ func setup(coord: Vector2i):
 func _ready() -> void:
 	currentHealth = attributes.get("totalHealth")
 	currentEnergy = attributes.get("totalEnergy")
+	engineEffectSprite.play(engine.idleAnimation)
 	
 func _physics_process(delta: float) -> void:
 	weaponSprite.play(weapon.idleAnimation)
+
+func move(destiny : Vector2):
+	var start = global_position
+	var endY = Vector2(start.x, destiny.y)
+	#end.y = end.y + tileSize/2
+
+	var tween = get_tree().create_tween()
+	engineEffectSprite.play(engine.poweringAnimation)
+	if (start.y != destiny.y): tween.tween_property(self, "global_position", endY, 0.25).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", destiny, 0.25).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
 	engineEffectSprite.play(engine.idleAnimation)
+
 	

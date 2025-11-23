@@ -1,38 +1,54 @@
 extends Node2D
 class_name GameBoard
 
-@export var xSize : int = 10
+@export var xSize : int = 30
 @export var ySize : int  = 10
 
 @onready var starfighter = $Starfighter
-@onready var tileMap = $TileMapLayer
+@onready var gameBoard = $GameBoard
+@onready var moveButton = $CanvasLayer/Control/MoveButton
 
 const tileSize = 16
 var boardCells : Array
 var highlighters: Array[Node] = []
+var onMove := false
+signal moveClick 
  
 
 func _ready():
 	spawnStarfighter(Vector2i(2, 2))
+	clearBoard()
+
+func _process(delta: float) -> void:
+	if moveClick:
+		if (onMove):
+			clearBoard()
+			updateRechable()
+		else: 
+			clearBoard()
+
+func clearBoard():
 	for x in range(xSize):
 		for y in range(ySize):
 			var currentCell = Vector2i(x,y)
 			boardCells.append(currentCell)
-			tileMap.set_cell(currentCell,1,Vector2i(2,2))
-	highlightTiles(boardCells)
+			gameBoard.set_cell(currentCell,1,Vector2i(2,2))
+			
+func updateRechable():
+	highlightTiles(getReachablePositions(starfighter.coord, starfighter.attributes["move"]))
 
-	
-	
 func spawnStarfighter(coord: Vector2i):
 	starfighter.setup(coord)
-	starfighter.global_position = tileMap.map_to_local(coord)
+	starfighter.global_position = gameBoard.map_to_local(coord)
 
 	
 func _input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and onMove:
 		var mousePos = get_global_mouse_position()
-		var gridPos = tileMap.local_to_map(mousePos)
+		var gridPos = gameBoard.local_to_map(mousePos)
 		tryMoveStarfighter(gridPos)
+		moveButton.button_pressed = false
+
 
 	
 func tryMoveStarfighter(dest: Vector2i):
@@ -47,15 +63,12 @@ func tryMoveStarfighter(dest: Vector2i):
 
 func getReachablePositions(center: Vector2i, maxRange: int) -> Array:
 	var result := []
-	print(center)
-	for x in range(maxRange):
-		for y in range(maxRange):
-			print("for: (", x,", ", y, ")")
+	for x in range(center.x - maxRange, center.x + maxRange):
+		for y in range(center.y - maxRange, center.y + maxRange):
 			var d = abs(center.x - x) + abs(center.y - y)
 			var currentCoord = Vector2i(x,y)
 			if d <= maxRange && isOnBounds(currentCoord):
 				result.append(currentCoord)
-				print("append " , result)
 	return result
 
 #return true if the coord is on bounds
@@ -64,27 +77,28 @@ func isOnBounds(coord : Vector2i) -> bool:
 
 
 func moveStarfighter(dest: Vector2i):
-	clearHighlights()
-	
 	var start = starfighter.global_position
-	var end = tileMap.map_to_local(dest)
-	end.y = end.y + tileSize/2
-
-	var tween = get_tree().create_tween()
-	tween.tween_property(starfighter, "global_position", end, 0.25).set_ease(Tween.EASE_IN_OUT)
-
+	var end = gameBoard.map_to_local(dest)
+	
+	starfighter.move(end)
+	
 	starfighter.coord = dest
+	
+	clearBoard()
+	clearHighlights()
 
 func highlightTiles(tiles: Array):
 	clearHighlights()
 	for t in tiles:
-		var h := ColorRect.new()
-		h.set_color(Color(0.5, 1.0, 1.0, 0.5))
-		#h.global_position = gridToWorld(t) - Vector2(tile_size/2, tile_size/2)
-		add_child(h)
-		highlighters.append(h)
+		gameBoard.set_cell(t, 1, Vector2i(3,2))
+		highlighters.append(t)
 
 func clearHighlights():
 	for h in highlighters:
 		h.queue_free()
 	highlighters.clear()
+
+
+func _on_move_button_toggled(toggled_on: bool) -> void:
+	moveClick.emit()
+	onMove = toggled_on

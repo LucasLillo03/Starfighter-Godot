@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3wba2k85wxmk"]
+[gd_scene load_steps=7 format=3 uid="uid://c0k75fsb8ypwc"]
 
-[ext_resource type="Script" uid="uid://bdgq32aphvk5u" path="res://Scripts/Model/Board/GameBoard.gd" id="1_7oe7p"]
-[ext_resource type="PackedScene" uid="uid://c07vjnnedm1ax" path="res://Scenes/Starfighter.tscn" id="2_qkiwi"]
-[ext_resource type="Texture2D" uid="uid://cll6cfseudcuh" path="res://Assets/Topdown Classic Boardgame/Image/Board.png" id="3_fkmb8"]
+[ext_resource type="Script" uid="uid://bdgq32aphvk5u" path="res://Scripts/Model/Board/GameBoard.gd" id="1_ymtlk"]
+[ext_resource type="Texture2D" uid="uid://cll6cfseudcuh" path="res://Assets/Topdown Classic Boardgame/Image/Board.png" id="2_i3ege"]
+[ext_resource type="PackedScene" uid="uid://c07vjnnedm1ax" path="res://Scenes/Starfighter.tscn" id="3_4yemd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2qi3"]
-texture = ExtResource("3_fkmb8")
+texture = ExtResource("2_i3ege")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -152,20 +152,36 @@ texture = ExtResource("3_fkmb8")
 11:11/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fkmb8"]
-scenes/1/scene = ExtResource("2_qkiwi")
+scenes/1/scene = ExtResource("3_4yemd")
 
 [sub_resource type="TileSet" id="TileSet_qkiwi"]
 sources/1 = SubResource("TileSetAtlasSource_y2qi3")
 sources/2 = SubResource("TileSetScenesCollectionSource_fkmb8")
 
-[node name="GameBoard" type="Node2D"]
-script = ExtResource("1_7oe7p")
+[node name="GameEngine" type="Node2D"]
+script = ExtResource("1_ymtlk")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="GameBoard" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_qkiwi")
 
-[node name="Starfighter" parent="." instance=ExtResource("2_qkiwi")]
-position = Vector2(13, 15)
+[node name="Starfighter" parent="." instance=ExtResource("3_4yemd")]
+position = Vector2(0, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MoveButton" type="Button" parent="CanvasLayer/Control"]
+offset_right = 51.0
+offset_bottom = 40.0
+toggle_mode = true
+text = "Move"
+
+[connection signal="toggled" from="CanvasLayer/Control/MoveButton" to="." method="_on_move_button_toggled"]
