@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7hgm2bktkmip"]
+
+[ext_resource type="Script" uid="uid://cstqap5m3tykf" path="res://Scripts/Model/Projectile.gd" id="1_lal66"]
+[ext_resource type="Texture2D" uid="uid://8qbr3fy6daxu" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="2_k1cl8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0kec"]
+atlas = ExtResource("2_k1cl8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tri7"]
+atlas = ExtResource("2_k1cl8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds7j7"]
+atlas = ExtResource("2_k1cl8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i1ty"]
+atlas = ExtResource("2_k1cl8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tued"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0kec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tri7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds7j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i1ty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_lal66")
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_4tued")

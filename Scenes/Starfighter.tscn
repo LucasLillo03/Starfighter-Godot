@@ -1,15 +1,12 @@
-[gd_scene load_steps=33 format=3 uid="uid://c07vjnnedm1ax"]
+[gd_scene load_steps=32 format=3 uid="uid://c07vjnnedm1ax"]
 
 [ext_resource type="Script" uid="uid://byoyd76j2qqd8" path="res://Scripts/Model/Starfighter.gd" id="1_fnemy"]
-[ext_resource type="Texture2D" uid="uid://de1svolmw2nr2" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_x7gyf"]
-[ext_resource type="Texture2D" uid="uid://dpf2oykeq7cnc" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_j45kr"]
-[ext_resource type="Texture2D" uid="uid://ci3tioggnermc" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="4_1ogiv"]
-[ext_resource type="Texture2D" uid="uid://2unholwhrow0" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="5_0hhuq"]
-[ext_resource type="Texture2D" uid="uid://ccb4mscscuq6k" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="6_yqj6r"]
-[ext_resource type="Texture2D" uid="uid://bkp1wl4wtdukx" path="res://Assets/Ships/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Shields/PNGs/Main Ship - Shields - Front and Side Shield.png" id="7_l6rwy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_36527"]
-size = Vector2(26, 26)
+[ext_resource type="Texture2D" uid="uid://de1svolmw2nr2" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_x7gyf"]
+[ext_resource type="Texture2D" uid="uid://dpf2oykeq7cnc" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_fnemy"]
+[ext_resource type="Texture2D" uid="uid://ci3tioggnermc" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="4_1ogiv"]
+[ext_resource type="Texture2D" uid="uid://2unholwhrow0" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="5_0hhuq"]
+[ext_resource type="Texture2D" uid="uid://ccb4mscscuq6k" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="6_yqj6r"]
+[ext_resource type="Texture2D" uid="uid://bkp1wl4wtdukx" path="res://Assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Shields/PNGs/Main Ship - Shields - Front and Side Shield.png" id="7_l6rwy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cwfr"]
 atlas = ExtResource("4_1ogiv")
@@ -52,7 +49,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ddwnm")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idleBase",
 "speed": 8.0
 }, {
 "frames": [{
@@ -69,7 +66,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_prrlq")
 }],
 "loop": true,
-"name": &"Powering",
+"name": &"poweringBase",
 "speed": 8.0
 }]
 
@@ -130,7 +127,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_y3t7g")
 }],
 "loop": true,
-"name": &"Fire",
+"name": &"fireAutoCannon",
 "speed": 8.0
 }, {
 "frames": [{
@@ -138,7 +135,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ixnni")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idleAutoCannon",
 "speed": 5.0
 }]
 
@@ -192,33 +189,28 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Starfighter" type="CharacterBody2D"]
+[node name="Starfighter" type="Node2D"]
+rotation = 1.5708
 script = ExtResource("1_fnemy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_36527")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_x7gyf")
 
-[node name="Engine" type="Sprite2D" parent="."]
-texture = ExtResource("3_j45kr")
+[node name="EngineSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_fnemy")
 
-[node name="EngineEffect" type="AnimatedSprite2D" parent="Engine"]
+[node name="EngineEffect" type="AnimatedSprite2D" parent="EngineSprite"]
 sprite_frames = SubResource("SpriteFrames_to28c")
-animation = &"Idle"
-frame_progress = 0.898527
+animation = &"poweringBase"
 
-[node name="Weapon" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_pqr5b")
-animation = &"Fire"
-frame_progress = 0.699859
+animation = &"idleAutoCannon"
+frame_progress = 0.832595
 
-[node name="Armour" type="AnimatedSprite2D" parent="."]
+[node name="ArmourSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_kg6u0")
 animation = &"Default"
-frame_progress = 0.259029
+frame_progress = 0.479675

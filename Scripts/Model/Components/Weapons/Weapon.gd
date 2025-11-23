@@ -1,7 +1,12 @@
-extends Node
+extends Component
 class_name Weapon
 
-@export var sprite : Texture2D
+var idleAnimation : String
+var fireAnimation : String
+var damage : int 
+var shotCost : int
+var velocity : int 
 
-func fire():
+
+func fire(owner):
 	push_error("this method hasn't implemented in this class because is abstract")
