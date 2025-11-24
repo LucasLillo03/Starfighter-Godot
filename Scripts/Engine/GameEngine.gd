@@ -1,5 +1,5 @@
 extends Node2D
-class_name GameEngine
+class_name MyGameEngine
 
 @export var xSize : int = 30
 @export var ySize : int  = 10

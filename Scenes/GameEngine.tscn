@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0k75fsb8ypwc"]
 
-[ext_resource type="Script" uid="uid://5wk650b160s8" path="res://Scripts/Model/Board/GameEngine.gd" id="1_ymtlk"]
+[ext_resource type="Script" uid="uid://5wk650b160s8" path="res://Scripts/Engine/GameEngine.gd" id="1_ymtlk"]
 [ext_resource type="Texture2D" uid="uid://cll6cfseudcuh" path="res://Assets/Topdown Classic Boardgame/Image/Board.png" id="2_i3ege"]
 [ext_resource type="PackedScene" uid="uid://c07vjnnedm1ax" path="res://Scenes/Starfighter.tscn" id="3_4yemd"]
 
@@ -180,6 +180,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MoveButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 388.0
 offset_right = 55.0
