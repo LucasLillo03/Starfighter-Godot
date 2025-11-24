@@ -126,7 +126,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y3t7g")
 }],
-"loop": true,
+"loop": false,
 "name": &"fireAutoCannon",
 "speed": 8.0
 }, {
@@ -201,14 +201,12 @@ texture = ExtResource("3_fnemy")
 
 [node name="EngineEffect" type="AnimatedSprite2D" parent="EngineSprite"]
 sprite_frames = SubResource("SpriteFrames_to28c")
-animation = &"idleBase"
-frame_progress = 0.422618
+animation = &"poweringBase"
 
 [node name="WeaponSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_pqr5b")
-animation = &"idleAutoCannon"
-frame_progress = 0.671383
+animation = &"fireAutoCannon"
 
 [node name="ArmourSprite" type="AnimatedSprite2D" parent="."]
 visible = false

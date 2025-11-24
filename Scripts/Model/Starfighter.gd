@@ -23,6 +23,10 @@ func _init() -> void:
 	}
 	weapon = AutoCannon.new()
 	engine = BaseEngine.new()
+	
+func _process(delta: float) -> void:
+	await  weaponSprite.animation_finished
+	weaponSprite.play(weapon.idleAnimation)
 
 func setup(coord: Vector2i):
 	self.coord = coord
@@ -31,9 +35,8 @@ func _ready() -> void:
 	currentHealth = attributes.get("totalHealth")
 	currentEnergy = attributes.get("totalEnergy")
 	engineEffectSprite.play(engine.idleAnimation)
-	
-func _physics_process(delta: float) -> void:
 	weaponSprite.play(weapon.idleAnimation)
+	
 
 func move(destiny : Vector2):
 	var start = global_position
@@ -48,4 +51,5 @@ func move(destiny : Vector2):
 	engineEffectSprite.play(engine.idleAnimation)
 
 func fire() -> Array[Projectile]:
+	weaponSprite.play(weapon.fireAnimation)
 	return weapon.fire(self)
