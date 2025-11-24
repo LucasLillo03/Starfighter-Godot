@@ -8,5 +8,6 @@ var shotCost : int
 var velocity : int 
 
 
-func fire(owner):
+func fire(owner) -> Array[Projectile]:
 	push_error("this method hasn't implemented in this class because is abstract")
+	return [] 

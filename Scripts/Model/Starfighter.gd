@@ -47,4 +47,5 @@ func move(destiny : Vector2):
 	await tween.finished
 	engineEffectSprite.play(engine.idleAnimation)
 
-	
+func fire() -> Array[Projectile]:
+	return weapon.fire(self)

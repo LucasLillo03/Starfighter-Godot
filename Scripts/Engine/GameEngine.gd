@@ -1,5 +1,5 @@
 extends Node2D
-class_name MyGameEngine
+class_name GameController
 
 @export var xSize : int = 30
 @export var ySize : int  = 10
@@ -12,12 +12,16 @@ const tileSize = 16
 var boardCells : Array
 var highlighters: Array[Node] = []
 var onMove := false
+var projectileList : Array[Projectile] = []
+
 signal moveClick 
+signal actionExec
  
 
 func _ready():
 	spawnStarfighter(Vector2i(2, 2))
 	clearBoard()
+	connect("actionExec", tick)
 
 func _process(delta: float) -> void:
 	if moveClick:
@@ -26,6 +30,15 @@ func _process(delta: float) -> void:
 			updateRechable()
 		else: 
 			clearBoard()
+		
+	
+func tick():
+	moveProjectiles()
+
+func moveProjectiles():
+	for projectile in projectileList:
+		projectile.coord.x +=  projectile.velocity
+		projectile.global_position = gameBoard.map_to_local(projectile.coord)
 
 func clearBoard():
 	for x in range(xSize):
@@ -58,6 +71,7 @@ func tryMoveStarfighter(dest: Vector2i):
 		return
 
 	moveStarfighter(dest)
+	actionExec.emit()
 	moveButton.button_pressed = false
 	
 
@@ -103,3 +117,14 @@ func clearHighlights():
 func _on_move_button_toggled(toggled_on: bool) -> void:
 	moveClick.emit()
 	onMove = toggled_on
+	
+
+
+func _on_fire_button_button_up() -> void:
+	actionExec.emit()
+	var newProjectiles = starfighter.fire()
+	for  projectile in newProjectiles:
+		projectile.global_position = gameBoard.map_to_local(projectile.coord)
+		add_child(projectile)
+	projectileList.append_array(newProjectiles)  
+	
